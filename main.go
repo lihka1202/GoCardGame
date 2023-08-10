@@ -6,6 +6,7 @@ import "fmt"
 
 func main() {
 	var fullDeck deck = newDeck()
+	fullDeck = fullDeck.shuffle()
 	firstHand, remainingDeck := deal(fullDeck, len(fullDeck)/2)
 	firstHand.saveToFile("firstHand")
 	remainingDeck.saveToFile("remainingDeck")

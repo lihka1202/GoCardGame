@@ -2,8 +2,10 @@ package main
 
 import (
 	"fmt"
+	"math/rand"
 	"os"
 	"strings"
+	"time"
 )
 
 // create a new type of deck, a slice of strings
@@ -40,6 +42,16 @@ func (d deck) convertToByteSlice() []byte {
 
 func (d deck) saveToFile(fileName string) error {
 	return os.WriteFile(fileName, d.convertToByteSlice(), 0666)
+}
+
+func (d deck) shuffle() deck {
+	source := rand.NewSource(time.Now().UnixNano())
+	r := rand.New(source)
+	for i := range d {
+		posHolder := r.Intn(len(d) - 1)
+		d[i], d[posHolder] = d[posHolder], d[i]
+	}
+	return d
 }
 
 /*
