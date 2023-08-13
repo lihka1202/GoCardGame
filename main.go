@@ -7,7 +7,7 @@ import "fmt"
 func main() {
 	var fullDeck deck = newDeck()
 	fullDeck = fullDeck.shuffle()
-	firstHand, remainingDeck := deal(fullDeck, len(fullDeck)/2)
+	firstHand, remainingDeck := deal(fullDeck, 4)
 	firstHand.saveToFile("firstHand")
 	remainingDeck.saveToFile("remainingDeck")
 	var read1, read2 deck
@@ -15,8 +15,4 @@ func main() {
 	read2 = newDeckFromFile("remainingDeck")
 	fmt.Println(read1)
 	fmt.Println(read2)
-}
-
-func newCard() string {
-	return "Ace of Diamonds"
 }
